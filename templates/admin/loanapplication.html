@@ -1,0 +1,121 @@
+{% extends 'admin/adminheader.html' %}
+
+
+    {% block content %}
+    
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Apply For loan</h2>
+          <h4 style="color: red">{{msg}}</h4>
+          
+        </div>
+
+       <div class="row mt-5 justify-content-center" data-aos="fade-up">
+          <div class="col-lg-10">
+            <form action="/loanapplication/" method="post" class="info">{% csrf_token %}
+              <div class="row">
+                <div class="col-md-12 form-group mt-3 mt-md-0">
+                  <label><b>Aadhar Number</b></label><br>
+                  
+                  <select type="text" name="pp" class="form-control chosen"  name="" id="aa" required="" onchange="aadh()">
+                    <option value="">Select</option>
+                    
+                    {% for x in b %}
+                    <option value="{{x.id}}" >{{x.aadhar}}</option>
+                  {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-12 form-group">
+                  <label><b>Name </b></label><br>
+                  <input type="text" name="name" class="form-control" id="a_name" required="" readonly="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>E-mail </b></label><br>
+                  <input type="email" class="form-control" name="email" id="a_email" required="" readonly="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Phone </b></label><br>
+                  <input type="text" class="form-control" name="phone" id="a_phone"  required="" readonly="">
+                </div>
+                 <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Date Of Birth </b></label><br>
+                  <input type="date" class="form-control" name="date" id="a_date" required="" readonly=""><br>
+                </div>
+
+               
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Address</b></label><br>
+                  <input type="text" class="form-control" name="address" id="a_address" required="" readonly="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Marital Status</b></label><br>
+                  <input type="text" class="form-control" name="status" id="a_status" required="" readonly="">
+                </div>
+
+                
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Monthly Income </b></label><br>
+                  <input type="number" class="form-control" name="income" required="">
+                </div>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                <label><b>Loan Type </b></label><br>
+                <select name="loantype" class="custom-select" required="">
+                <option value="" >Select</option>
+                <option class="custom" value="home">Home loan (upto 2 lakh)</option>
+                <option class="custom" value="medical">Medical loan (upto 3 lakh)</option>
+                <option class="custom" value="educational">Educational loan (upto 1 lakh)</option>
+                <option class="custom " value="other">Other loan (below 50,000)</option>
+                </select><br><br>
+                </div>
+
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <label><b>Loan Amount </b></label><br>
+                  <input type="number" class="form-control" name="amount" required>
+                </div>
+
+              </div>
+              <div class="text-center"><button type="submit" value="submit" class="btn btn-info">Submit</button></div>
+            </form>
+          </div>
+       
+      </div>
+
+
+    </section>
+    <script type="text/javascript">
+    function aadh()
+    {
+      
+     var d=document.getElementById("aa").value;
+     $.ajax({
+
+              url:'/pro_ajax/', 
+              data:
+              {
+                      'p':d
+                     },
+              datatype: 'json',
+               success: function(data) 
+                  {
+                     
+                   document.getElementById("a_name").value=data.aa;
+                    document.getElementById("a_email").value=data.bb;
+          document.getElementById("a_phone").value=data.cc;
+           document.getElementById("a_date").value=data.dd;
+            document.getElementById("a_address").value=data.ee;
+             document.getElementById("a_status").value=data.ff;
+                } 
+              }); 
+ }
+</script>
+<script type="text/javascript">
+  $(".chosen").chosen();
+</script>
+
+
+      {% endblock %}

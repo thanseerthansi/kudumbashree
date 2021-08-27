@@ -1,0 +1,78 @@
+{% extends 'president/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      
+
+        <div class="container"><br><br>
+        <div class="section-title">
+          <h2>View Attendence</h2>
+          <h4>{{msg}}</h4>
+          
+        </div>
+         
+          <div >
+            <label for=""><b>Select Date:</b></label><br>
+            <select name="at" id="at" class="form-control chosen col-md-3" onclick ="fun()">
+              <option selected="" disabled="" >Select Date</option>
+              {% for x in at %}
+              
+              <option value="{{x}}">{{x}}</option>
+              {% endfor %}
+            </select>
+            
+          </div><br>
+       
+        
+        <div class="info col-lg-10">
+          <table class="table table-sm " >
+            <thead >
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+          </table>
+        </div>
+     
+    </div>
+
+      </div>
+
+    </section>
+  <script type="text/javascript">
+  function fun(){
+   
+ var d=document.getElementById("at").value;
+ 
+ $.ajax({
+              url:'/att_dis/', 
+              data:
+              {
+                      'p':d
+                     },
+              datatype: 'json',
+               success: function(data)
+               { 
+                console.log(data);
+                   $("table tbody").empty() 
+                    for (var i = data.length - 1; i >= 0; i--) 
+                    {
+               
+                        var markup = "<tr><td>" + data[i].name + "</td><td>" + data[i].date + "</td><td>" + data[i].tim + "</td></tr>";
+                          $("table tbody").append(markup);
+                }
+
+              }
+              }); 
+ }
+</script>
+
+
+      {% endblock %}

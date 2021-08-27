@@ -1,0 +1,58 @@
+{% extends 'president/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+     
+
+        <div class="container"><br><br>
+        <div class="section-title">
+          <h2>Loan Details</h2>
+          <h4>{{msg}}</h4>
+          
+        </div>
+        
+        <div class="info col-lg-12">
+          <table class="table table-bordered " >
+            <thead >
+            <tr>
+              <th>Name</th>
+              <th>Income</th>
+              <th>Aadhar</th>
+              <th>Phone</th>
+               <th>Address</th>
+              <th>Loan Type</th>
+              <th>Amount</th>
+              <th>Approve</th>
+              <th>Cancel</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in c %}
+            <tr>
+              <td>{{x.id2.name}}</td>
+              <td>{{x.income}}</td>
+              <td>{{x.id2.aadhar}}</td>
+              <td>{{x.id2.phone}}</td>
+               <td>{{x.id2.address}}</td>
+              <td>{{x.loantype}}</td>
+              <td>{{x.amount}}</td>
+              <td><a href="/papprove/?a={{x.id}}" {% if x.status == 'pending' %} ><button style="background-color: #006666;color: white;"> Approve</button></a {% endif %}></td>
+             <td><a href="/pcancel/?a={{x.id}}" {% if x.status == 'pending' %} ><button style="background-color: #006666;color: white;"> Cancel</button></a {% endif %}></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+        </div>
+     
+    </div>
+
+      </div>
+
+    </section>
+
+
+      {% endblock %}

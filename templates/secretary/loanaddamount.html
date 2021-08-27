@@ -1,0 +1,86 @@
+{% extends 'secretary/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 >Loan Repayment</h2>
+          
+          
+        </div>
+
+        <div class="row" data-aos="fade-in " >
+          {% for x in b %}
+          <div class="col-md-6">
+            
+            <b>&nbsp Name=&nbsp&nbsp<span style="color: #00ff00">{{x.id2.name}}</span></b> 
+           
+          </div>
+           <div class="col-md-6">
+          
+           <b>&nbsp Aadhar Number=&nbsp&nbsp<span style="color: #00ff00">{{x.id2.aadhar}}</span> </b>
+           
+            
+          </div><br><br>
+
+          <div class="col-md-6">
+          
+           <b>&nbsp Loan Amount=&nbsp&nbsp<span style="color: #00ff00">{{x.amount}}</span> </b>
+           
+            
+          </div>
+
+           
+           <div class="col-md-6">
+          
+           <b>&nbsp Balance Amount=&nbsp&nbsp<span style="color: #00ff00">{{x.balance}}</span> </b>
+           
+            
+          </div><br><br><br>
+          {% endfor %}
+          
+          
+          <div class="col-lg-10 mt-5 mt-lg-0 d-flex align-items-stretch">
+           <form action="/saddamount/" method="post" class="info text-center">{% csrf_token %}
+              <h4 style="color: red" class="text-left">{{msg}}</h4>
+                <div class="form-group col-md-6">
+                  <div class="form-row">
+                  
+
+                 <label><b>Enter Amount:</b></label><br>
+                 <input type="number" class="form-control" name="pa">
+                  
+                 </select></div>
+                {% for x in b %}  
+                <input type=""  value="{{x.id}}" name="pd"   hidden="">
+                <input type="number"  value="{{x.balance}}" name="bl"   hidden="">
+                {% endfor %}
+              
+             
+              </div>
+
+              
+
+              <div class="text-center"><a ><button class="btn btn-info" type="Submit">Submit</button></div>
+            </form>
+          </div>
+        </div>
+        
+
+         
+      </div>
+
+       
+
+      </div>
+
+    </section>
+    <script type="text/javascript">
+  $(".chosen").chosen();
+</script>
+
+
+      {% endblock %}

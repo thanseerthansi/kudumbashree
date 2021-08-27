@@ -1,0 +1,56 @@
+{% extends 'home/homeheader.html' %}
+
+
+    {% block content %}
+  
+
+    <!-- ======= Contact Section ======= -->
+    <section id="breadcrumbs" class="breadcrumbs" style="  background-image: url(/static/admin/img/px.jpg);">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center" >
+          <h2>LOGIN</h2>
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li>Login</li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
+   <!-- End Hero -->
+      
+    <section id="contact" class="contact">
+      <div class="container">
+
+        
+        <h1>LOGIN</h1>
+        <div class="row mt-5 justify-content-center" data-aos="fade-up">
+          <div class="col-lg-6">
+            <form action="/login/" method="post" class="info-wrap" style=" border-radius: 10px; border: 2px  padding: 20px; background-image: url(/static/admin/img/px.jpg);" >{% csrf_token %}
+              <div class="form-row">
+                
+                <div class="col-md-12 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required="" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-12 form-group">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Your password" data-rule="password" data-msg="Please enter a valid password" required="" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+             
+            
+              <div class="text-center"> <button class="btn btn-success" type="submit">Login</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+ {% endblock %}

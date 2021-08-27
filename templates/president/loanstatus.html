@@ -1,0 +1,63 @@
+{% extends 'president/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 >Loan status</h2>
+          <h4>{{msg}}</h4>
+          
+        </div>
+
+        <div class=" " data-aos="fade-in " >
+
+          
+          
+          <div class="col-lg-10 mt-5 mt-lg-0 d-flex align-items-stretch">
+           
+              <div class="info">
+                <div class="form-group col-md-6">
+                  <div class="form-row">
+                  <label for="attendence"><b> Select</b></label>
+
+                 <select class="custom-select chosen" name="" id='bb'>
+                  <option value="" disabled="" selected="" hidden="">Select</option>
+                  {% for x in b %}
+
+                   <option value="{{x.id}}">{{x.id2.aadhar}}</option>
+                   {% endfor %}
+                  
+                 </select></div>
+                  
+               
+                
+              
+             
+              </div>
+
+              
+
+              <div class="text-center"><a onclick='this.href="/pdetail/?a=" + document.getElementById("bb").value'><button class="btn btn-info" type="Submit">Submit</button></a></div>
+           
+          </div>
+        </div>
+        </div>
+        
+
+         
+      </div>
+
+
+    
+
+    </section>
+    <script type="text/javascript">
+  $(".chosen").chosen();
+</script>
+   
+
+
+      {% endblock %}

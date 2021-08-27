@@ -1,0 +1,86 @@
+{% extends 'secretary/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 >Mark Attendence</h2>
+          <h4>{{msg}}</h4>
+          
+        </div>
+
+        <div class="row" data-aos="fade-in " >
+
+          
+          
+          <div class="col-lg-10 mt-5 mt-lg-0 d-flex align-items-stretch">
+           <form action="/sattendence/" method="post" class="info text-center">{% csrf_token %}
+              
+                <div class="form-group col-md-6">
+                  <div class="form-row">
+                  <label for="attendence"><b> Members</b></label>
+
+                 <select class="custom-select" name="attend" required="">
+                  <option value="" hidden="">Select</option>
+                  {% for x in b %}
+
+                   <option value="{{x.id}}">{{x.name}}</option>
+                   {% endfor %}
+                  
+                 </select></div>
+                  
+               
+                
+              
+             
+              </div>
+
+              
+
+              <div class="text-center"><button class="btn btn-info" type="Submit">Submit</button></div>
+            </form>
+          </div>
+        </div>
+        
+
+         
+      </div>
+
+      
+
+      </div>
+
+    </section>
+  <script type="text/javascript">
+  function fun(){
+   
+ var d=document.getElementById("at").value;
+ 
+ $.ajax({
+              url:'/att_dis/', 
+              data:
+              {
+                      'p':d
+                     },
+              datatype: 'json',
+               success: function(data)
+               { 
+                console.log(data);
+                   $("table tbody").empty() 
+                    for (var i = data.length - 1; i >= 0; i--) 
+                    {
+               
+                        var markup = "<tr><td>" + data[i].name + "</td><td>" + data[i].date + "</td><td>" + data[i].tim + "</td></tr>";
+                          $("table tbody").append(markup);
+                }
+
+              }
+              }); 
+ }
+</script>
+
+
+      {% endblock %}

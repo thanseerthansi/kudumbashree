@@ -1,0 +1,81 @@
+{% extends 'secretary/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+     
+
+        <div class="container"><br><br>
+        <div class="section-title">
+          <h2>Loan Details</h2>
+          <h4>{{msg}}</h4>
+          
+        </div>
+        
+        <div class="info col-lg-12">
+          <input type="text"  class="form-control col-lg-12"  id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+          <table class="table table-bordered " id="myTable" >
+            <thead >
+            <tr>
+              <th>Name</th>
+              
+              <th>Aadhar</th>
+              <th>Phone</th>
+               <th>Address</th>
+              <th>Loan Type</th>
+              <th>Amount</th>
+              <th>Pay</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for x in b %}
+            <tr>
+              <td>{{x.id2.name}}</td>
+              
+              <td>{{x.id2.aadhar}}</td>
+              <td>{{x.id2.phone}}</td>
+               <td>{{x.id2.address}}</td>
+              <td>{{x.loantype}}</td>
+              <td>{{x.amount}}</td>
+              <td><a href="/saddamount/?a={{x.id}}" {% if x.status == 'approved' %} ><button style="background-color: #006666;color: white;"> Pay</button></a {% endif %}></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+        </div>
+     
+    </div>
+
+      </div>
+
+    </section>
+   <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+      {% endblock %}

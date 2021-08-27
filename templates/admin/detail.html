@@ -1,0 +1,95 @@
+{% extends 'admin/adminheader.html' %}
+
+
+    {% block content %}
+    
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2 >Loan Details</h2>
+         
+          
+        </div>
+
+        <div class="row" data-aos="fade-in " >
+          {% for x in b %}
+          <div class="col-md-6">
+            
+            <b>&nbsp Name=&nbsp&nbsp<span style="color:    #00ff00">{{x.id2.name}}</span></b> 
+           
+          </div>
+           <div class="col-md-6">
+          
+           <b>&nbsp Aadhar Number=&nbsp&nbsp<span style="color: #00ff00">{{x.id2.aadhar}}</span> </b>
+           
+            
+          </div><br><br>
+
+          <div class="col-md-6">
+          
+           <b>&nbsp Loan Amount=&nbsp&nbsp<span style="color: #00ff00">{{x.amount}}</span> </b>
+           
+            
+          </div>
+
+           
+           <div class="col-md-6">
+          
+           <b>&nbsp Balance Amount=&nbsp&nbsp<span style="color: #00ff00">{{x.balance}}</span> </b>
+           
+            
+          </div><br><br><br>
+          {% endfor %}
+
+          
+          <div class="info col-lg-10">
+            
+          <table class="table table-sm " >
+            <thead >
+            <tr>
+              <th>Amount paid</th>
+              <th>Date</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for y in e %}
+            <tr>
+              <td>{{y.payamount}}</td>
+              <td>{{y.date}}</td>
+              <td>{{y.time}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+          <h4 style="color: white" >{{msg}}</h4>
+        </div>
+
+
+        <br><br>
+       
+          
+          
+          
+         
+        </div>
+        
+
+         
+      </div>
+
+       
+
+      </div>
+
+    </section>
+    <script type="text/javascript">
+  $(".chosen").chosen();
+</script>
+
+</script>
+
+
+      {% endblock %}
